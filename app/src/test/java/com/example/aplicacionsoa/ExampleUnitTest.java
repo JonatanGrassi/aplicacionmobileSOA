@@ -1,4 +1,4 @@
-package com.example.aplicacionmobilesoa;
+package com.example.aplicacionsoa;
 
 import org.junit.Test;
 
