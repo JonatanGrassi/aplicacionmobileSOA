@@ -12,13 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AplicacionSoa">
         <activity
-            android:name=".MainActivity"
+            android:name=".Activity_Login"
             android:exported="true"  />
         <activity
-            android:name=".acitivy_Confirmation"
+            android:name=".Activity_Register"
             android:exported="false" />
         <activity
-            android:name=".MainActivityVerificacion"
+            android:name=".Activity_Verificacion"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
