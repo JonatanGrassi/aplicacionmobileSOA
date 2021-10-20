@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,31 +37,39 @@ public class Activity_Register extends AppCompatActivity implements Registro.Vie
         ambiente = (EditText) findViewById(R.id.editTextAmbiente);
         comision = (EditText) findViewById(R.id.editTextComision);
         grupo = (EditText) findViewById(R.id.editTextGrupo);
-        contraseña = (EditText) findViewById(R.id.editTextPassWord);
+        contraseña = (EditText) findViewById(R.id.editTextPassword);
         enviarInformacionDeRegistro = (Button) findViewById(R.id.buttonRegistrar);
         enviarInformacionDeRegistro.setOnClickListener(HandlerRegistro);
         presenter = new PresenterRegistro(this);
-        presenter.configurarBroadCastReciever();
     }
 
     @Override
     protected void onDestroy() {
-        stopService(new Intent(Activity_Register.this, Http_Conection_Service.class));
+        presenter.liberarRecursos();
         super.onDestroy();
     }
 
+
     private View.OnClickListener HandlerRegistro = (V) ->
     {
+        if(presenter.comprarConexion())
+        {
         UsuarioJSON UsuJSON = new UsuarioJSON();
         JSONObject obj = UsuJSON.crearObjetoJSON(ambiente.getText().toString(),nombre.getText().toString(),apellido.getText().toString()
         ,mail.getText().toString(),dni.getText().toString(),contraseña.getText().toString(),comision.getText().toString()
         ,grupo.getText().toString());
+        presenter.configurarBroadCastReciever();
         presenter.iniciarServicio(obj);
+        }
+        else
+        {
+            Toast.makeText(this,"sin conexion a internet.Su cuenta no se registrara",Toast.LENGTH_LONG).show();
+        }
     };
 
 
     @Override
-    public void mostrarConexionExitosa() {
-
+    public void mostrarResultadoConexion(String msj) {
+        Toast.makeText(this,msj,Toast.LENGTH_LONG).show();
     }
 }

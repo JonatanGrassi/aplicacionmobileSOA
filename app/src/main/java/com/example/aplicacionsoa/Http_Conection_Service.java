@@ -26,8 +26,8 @@ public class Http_Conection_Service extends IntentService {
     private HttpURLConnection connection;
     private URL url;
 
-    public Http_Conection_Service(String name) {
-        super(name);
+    public Http_Conection_Service() {
+        super("Http_Conection_Service");
     }
 
     @Override
@@ -35,7 +35,8 @@ public class Http_Conection_Service extends IntentService {
         String uri = intent.getExtras().getString("URI");
         try {
             JSONObject obj = new JSONObject(intent.getExtras().getString("JSON"));
-            realizarPOST(obj,uri);
+            int result = realizarPOST(obj,uri);
+            ejecutarPOST(result);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -86,7 +87,7 @@ public class Http_Conection_Service extends IntentService {
 
         }
         Intent i = new Intent(PresenterRegistro.ACTIONBROADCAST);
-        i.putExtra("rtaServ",result);
+        i.putExtra("rtaServ",Integer.valueOf(result).toString());
         sendBroadcast(i);
     }
 }

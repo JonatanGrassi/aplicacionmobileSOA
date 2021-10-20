@@ -9,6 +9,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.telephony.TelephonyManager;
@@ -71,6 +73,7 @@ public class Activity_Verificacion extends AppCompatActivity {
 
         confirmarCod.setOnClickListener((V) ->
         {
+            /*
             if(codSeguridad.getText().toString().equals(codigoDeConfirmacion))
             {
                 Intent newIntent = new Intent(this, Activity_Login.class);
@@ -80,6 +83,9 @@ public class Activity_Verificacion extends AppCompatActivity {
             {
                 mostrarDialogoDeError();
             }
+             */
+            Intent newIntent = new Intent(this, Activity_Login.class);
+            startActivity(newIntent);
      });
 }
 
