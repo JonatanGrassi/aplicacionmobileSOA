@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -20,13 +21,15 @@ public class Activity_Login extends AppCompatActivity {
         ingresoMail = (EditText) findViewById(R.id.editTextMailLog);
         ingresoPass = (EditText) findViewById(R.id.editTextPassWord);
         botonRegistrar = (Button) findViewById(R.id.button);
-
-
-        botonRegistrar.setOnClickListener((V) ->
-        {
-            Intent newIntent = new Intent(this, Activity_Register.class);
-            newIntent.putExtra("descripcion",ingresoMail.getText().toString());
-            startActivity(newIntent);
-        });
+        botonRegistrar.setOnClickListener(HandlerLogin);
     }
+
+
+
+    private View.OnClickListener HandlerLogin = (V) ->
+    {
+        Intent newIntent = new Intent(this, Activity_Register.class);
+        newIntent.putExtra("descripcion",ingresoMail.getText().toString());
+        startActivity(newIntent);
+    };
 }

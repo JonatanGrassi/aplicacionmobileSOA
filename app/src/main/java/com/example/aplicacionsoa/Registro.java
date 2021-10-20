@@ -1,17 +1,20 @@
 package com.example.aplicacionsoa;
 
+import org.json.JSONObject;
+
 public interface Registro {
 
-    interface view {
+    interface View {
         public void mostrarConexionExitosa();
     }
 
-    interface presenter
+    interface Presenter
     {
-
+        public void iniciarServicio(JSONObject obj);
+        public void configurarBroadCastReciever();
     }
 
-    interface model
+    interface Model
     {
 
     }
