@@ -1,4 +1,4 @@
-package com.example.aplicacionsoa;
+package com.example.aplicacionsoa.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.example.aplicacionsoa.R;
 
 public class Activity_Login extends AppCompatActivity {
 

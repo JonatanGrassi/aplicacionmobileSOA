@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.aplicacionsoa">
+    package="com.example.aplicacionsoa" >
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
@@ -14,29 +14,32 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.AplicacionSoa">
+        android:theme="@style/Theme.AplicacionSoa"
+        android:usesCleartextTraffic="true" >
+        <activity
+            android:name=".view.activity_inicio_app"
+            android:exported="false" />
+
         <service
-            android:name=".Http_Conection_Service"
-            android:exported="false">
+            android:name=".model.Http_Conection_Service"
+            android:exported="false" >
         </service>
 
         <activity
-            android:name=".Activity_Login"
+            android:name=".view.Activity_Login"
             android:exported="true" />
         <activity
-            android:name=".Activity_Register"
-            android:exported="false"/>
+            android:name=".view.Activity_Register"
+            android:exported="false" />
         <activity
-            android:name=".Activity_Verificacion"
-            android:exported="true">
+            android:name=".view.Activity_Verificacion"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

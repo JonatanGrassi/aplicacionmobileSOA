@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity_Register">
+    tools:context=".view.Activity_Register">
 
   <EditText
       android:id="@+id/editTextAmbiente"
@@ -40,7 +40,7 @@
       android:layout_width="363dp"
       android:layout_height="48dp"
       android:ems="10"
-      android:inputType="textPersonName"
+      android:inputType="number"
       android:text="@string/comision"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
@@ -54,7 +54,7 @@
       android:layout_width="363dp"
       android:layout_height="48dp"
       android:ems="10"
-      android:inputType="textPersonName"
+      android:inputType="textEmailAddress"
       android:text="@string/email"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
@@ -68,7 +68,7 @@
       android:layout_width="363dp"
       android:layout_height="48dp"
       android:ems="10"
-      android:inputType="textPersonName"
+      android:inputType="number"
       android:text="@string/grupo"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
@@ -82,7 +82,7 @@
       android:layout_width="363dp"
       android:layout_height="48dp"
       android:ems="10"
-      android:inputType="textPersonName"
+      android:inputType="number"
       android:text="@string/dni"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
@@ -130,4 +130,5 @@
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
       app:layout_constraintVertical_bias="0.942" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

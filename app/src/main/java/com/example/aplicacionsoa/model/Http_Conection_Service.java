@@ -1,22 +1,20 @@
-package com.example.aplicacionsoa;
+package com.example.aplicacionsoa.model;
 
 import android.app.IntentService;
 import android.content.Intent;
-import android.content.Context;
-import android.os.Bundle;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+
+import com.example.aplicacionsoa.presenter.PresenterRegistro;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
@@ -61,14 +59,15 @@ public class Http_Conection_Service extends IntentService {
             dots.flush();
             connection.connect();
             respuesta = connection.getResponseCode();
-            InputStreamReader iSr = new InputStreamReader(connection.getInputStream());
             if(respuesta == HttpURLConnection.HTTP_OK || respuesta == HttpURLConnection.HTTP_CREATED)
             {
-
+                InputStreamReader iSr = new InputStreamReader(connection.getInputStream());
+                result=convertInputStreamToString(iSr).toString();
             }
             else if (respuesta == HttpURLConnection.HTTP_BAD_REQUEST)
             {
-
+                InputStreamReader iSr = new InputStreamReader(connection.getInputStream());
+                result=convertInputStreamToString(iSr).toString();
             }
             dots.close();
             connection.disconnect();
@@ -80,6 +79,7 @@ public class Http_Conection_Service extends IntentService {
         return respuesta;
 
     }
+
     public void ejecutarPOST(int result)
     {
         if(result!=-1)
@@ -89,5 +89,16 @@ public class Http_Conection_Service extends IntentService {
         Intent i = new Intent(PresenterRegistro.ACTIONBROADCAST);
         i.putExtra("rtaServ",Integer.valueOf(result).toString());
         sendBroadcast(i);
+    }
+
+    private StringBuilder convertInputStreamToString(InputStreamReader inputStream) throws IOException {
+        BufferedReader br = new BufferedReader(inputStream);
+        StringBuilder result = new StringBuilder();
+        String line;
+        while ((line = br.readLine()) != null) {
+            result.append(line + "\n");
+        }
+        br.close();
+        return result;
     }
 }

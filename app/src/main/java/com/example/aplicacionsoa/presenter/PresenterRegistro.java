@@ -1,33 +1,31 @@
-package com.example.aplicacionsoa;
+package com.example.aplicacionsoa.presenter;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
+
+import com.example.aplicacionsoa.model.Http_Conection_Service;
+import com.example.aplicacionsoa.Utilitarias;
+import com.example.aplicacionsoa.view.Activity_Register;
 
 import org.json.JSONObject;
 
-import java.util.logging.Filter;
-
-public class PresenterRegistro implements Registro.Presenter {
+public class PresenterRegistro<inner> implements Registro.Presenter {
     private Activity_Register viewRegistro;
-    private Registro.Model modelRegistro;
+
     ReceptorRespuestaServidor broadcast;
-    public static final String ACTIONBROADCAST = "com.example.aplicacionsoa.intentfilter.RTA_SERVIDOR";
+    public static final String ACTIONBROADCAST = "com.example.aplicacionsoa.presenter.intentfilter.RTA_SERVIDOR";
     private IntentFilter filtro;
     public static final String URI_REGISTER = "http://so-unlam.net.ar/api/api/register";
 
     public PresenterRegistro(Activity_Register viewRegistro) {
         this.viewRegistro = viewRegistro;
-        modelRegistro = new modelRegistro(this);
-
     }
 
     @Override
     public void iniciarServicio(JSONObject obj) {
-        Intent reg = new Intent(viewRegistro,Http_Conection_Service.class);
+        Intent reg = new Intent(viewRegistro, Http_Conection_Service.class);
         reg.putExtra("URI",URI_REGISTER);
         reg.putExtra("JSON",obj.toString());
         viewRegistro.startService(reg);
@@ -43,12 +41,15 @@ public class PresenterRegistro implements Registro.Presenter {
 
     @Override
     public void liberarRecursos() {
-        viewRegistro.stopService(new Intent(viewRegistro, Http_Conection_Service.class));
-        viewRegistro.unregisterReceiver(broadcast);
+        if(Utilitarias.isMyServiceRunning(Http_Conection_Service.class,viewRegistro)) {
+            viewRegistro.stopService(new Intent(viewRegistro, Http_Conection_Service.class));
+        }
+        if(broadcast!=null)
+            viewRegistro.unregisterReceiver(broadcast);
     }
 
     @Override
-    public boolean comprarConexion() {
+    public boolean comprobarConexion() {
        return Utilitarias.comprobarConexion(viewRegistro);
     }
 

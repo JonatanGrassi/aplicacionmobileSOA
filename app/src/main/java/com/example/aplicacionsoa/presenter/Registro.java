@@ -1,4 +1,4 @@
-package com.example.aplicacionsoa;
+package com.example.aplicacionsoa.presenter;
 
 import org.json.JSONObject;
 
@@ -13,11 +13,6 @@ public interface Registro {
         public void iniciarServicio(JSONObject obj);
         public void configurarBroadCastReciever();
         public void liberarRecursos();
-        public boolean comprarConexion();
-    }
-
-    interface Model
-    {
-
+        public boolean comprobarConexion();
     }
 }

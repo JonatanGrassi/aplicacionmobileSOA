@@ -1,16 +1,18 @@
-package com.example.aplicacionsoa;
+package com.example.aplicacionsoa.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import org.json.JSONException;
+import com.example.aplicacionsoa.presenter.PresenterRegistro;
+import com.example.aplicacionsoa.R;
+import com.example.aplicacionsoa.presenter.Registro;
+import com.example.aplicacionsoa.UsuarioJSON;
+
 import org.json.JSONObject;
 
 public class Activity_Register extends AppCompatActivity implements Registro.View {
@@ -45,6 +47,7 @@ public class Activity_Register extends AppCompatActivity implements Registro.Vie
 
     @Override
     protected void onDestroy() {
+        Toast.makeText(this,"la activity se cerro",Toast.LENGTH_LONG).show();
         presenter.liberarRecursos();
         super.onDestroy();
     }
@@ -52,7 +55,7 @@ public class Activity_Register extends AppCompatActivity implements Registro.Vie
 
     private View.OnClickListener HandlerRegistro = (V) ->
     {
-        if(presenter.comprarConexion())
+        if(presenter.comprobarConexion())
         {
         UsuarioJSON UsuJSON = new UsuarioJSON();
         JSONObject obj = UsuJSON.crearObjetoJSON(ambiente.getText().toString(),nombre.getText().toString(),apellido.getText().toString()
