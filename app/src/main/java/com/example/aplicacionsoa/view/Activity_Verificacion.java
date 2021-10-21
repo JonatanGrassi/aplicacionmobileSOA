@@ -8,13 +8,16 @@ import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.os.BatteryManager;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.telephony.TelephonyManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.aplicacionsoa.R;
 
@@ -24,6 +27,9 @@ public class Activity_Verificacion extends AppCompatActivity {
     private Button confirmarCod;
     private Button enviarConfirmarCod;
     private String codigoDeConfirmacion;
+    private int nivelDeBateria;
+    private int escalaBateria;
+    private Integer porcentajeBateria;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +40,13 @@ public class Activity_Verificacion extends AppCompatActivity {
         codSeguridad = (EditText) findViewById(R.id.textPlainIngresCod);
         confirmarCod = (Button) findViewById(R.id.confirmarCod);
         enviarConfirmarCod = (Button) findViewById(R.id.enviarCodigoSeg);
+
+        IntentFilter intentFilterBateria = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+        Intent estadoBateria = getApplicationContext().registerReceiver(null,intentFilterBateria);
+        nivelDeBateria = estadoBateria.getIntExtra(BatteryManager.EXTRA_LEVEL,-1);
+        escalaBateria = estadoBateria.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
+        porcentajeBateria = nivelDeBateria * 100 / escalaBateria;
+        Toast.makeText(getApplicationContext(), "Bateria: "+porcentajeBateria.toString()+"%", Toast.LENGTH_LONG).show();
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this,new String[] { Manifest.permission.SEND_SMS}, 1);
