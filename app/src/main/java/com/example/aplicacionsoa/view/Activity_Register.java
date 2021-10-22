@@ -10,12 +10,11 @@ import android.widget.Toast;
 
 import com.example.aplicacionsoa.presenter.PresenterRegistro;
 import com.example.aplicacionsoa.R;
-import com.example.aplicacionsoa.presenter.Registro;
-import com.example.aplicacionsoa.UsuarioJSON;
+import com.example.aplicacionsoa.presenter.Mvp;
 
 import org.json.JSONObject;
 
-public class Activity_Register extends AppCompatActivity implements Registro.View {
+public class Activity_Register extends AppCompatActivity implements Mvp.View {
     private EditText nombre;
     private EditText apellido;
     private EditText dni;
@@ -25,7 +24,7 @@ public class Activity_Register extends AppCompatActivity implements Registro.Vie
     private EditText grupo;
     private EditText contraseña;
     private Button enviarInformacionDeRegistro;
-    private Registro.Presenter presenter;
+    private PresenterRegistro presenter;
 
 
     @Override
@@ -47,7 +46,6 @@ public class Activity_Register extends AppCompatActivity implements Registro.Vie
 
     @Override
     protected void onDestroy() {
-        Toast.makeText(this,"la activity se cerro",Toast.LENGTH_LONG).show();
         presenter.liberarRecursos();
         super.onDestroy();
     }
@@ -57,11 +55,17 @@ public class Activity_Register extends AppCompatActivity implements Registro.Vie
     {
         if(presenter.comprobarConexion())
         {
-        UsuarioJSON UsuJSON = new UsuarioJSON();
-        JSONObject obj = UsuJSON.crearObjetoJSON(ambiente.getText().toString(),nombre.getText().toString(),apellido.getText().toString()
-        ,mail.getText().toString(),dni.getText().toString(),contraseña.getText().toString(),comision.getText().toString()
-        ,grupo.getText().toString());
+
         presenter.configurarBroadCastReciever();
+        /*
+        JSONObject obj = presenter.getJsonObject(ambiente.getText().toString(),nombre.getText().toString(),apellido.getText().toString()
+                ,mail.getText().toString(),dni.getText().toString(),contraseña.getText().toString(),comision.getText().toString()
+                ,grupo.getText().toString());
+                */
+            JSONObject obj = presenter.getJsonObject("TEST","jonatan","grassi"
+                    ,"jonatangrassi22@gmail.com","40077893","12342131234","2900"
+                    ,"1");
+
         presenter.iniciarServicio(obj);
         }
         else

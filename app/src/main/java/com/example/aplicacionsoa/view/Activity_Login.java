@@ -7,14 +7,26 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.aplicacionsoa.R;
+import com.example.aplicacionsoa.presenter.Mvp;
+import com.example.aplicacionsoa.presenter.PresenterLogin;
+import com.example.aplicacionsoa.presenter.PresenterRegistro;
 
-public class Activity_Login extends AppCompatActivity {
+import org.json.JSONObject;
+import org.w3c.dom.Text;
+
+public class Activity_Login extends AppCompatActivity implements Mvp.View {
 
     private EditText ingresoMail;
     private EditText ingresoPass;
-    private Button botonRegistrar;
+    private TextView registrate;
+    private Button botonIngresar;
+    private PresenterLogin presenter;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,16 +34,41 @@ public class Activity_Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         ingresoMail = (EditText) findViewById(R.id.editTextMailLog);
         ingresoPass = (EditText) findViewById(R.id.editTextPassWord);
-        botonRegistrar = (Button) findViewById(R.id.button);
-        botonRegistrar.setOnClickListener(HandlerLogin);
+        botonIngresar = (Button) findViewById(R.id.button);
+        registrate = (TextView) findViewById(R.id.textViewRegistrate);
+        botonIngresar.setOnClickListener(HandlerLogin);
+        registrate.setOnClickListener(HandlerRegistrate);
+        presenter = new PresenterLogin(this);
     }
 
-
+    @Override
+    protected void onDestroy() {
+        presenter.liberarRecursos();
+        super.onDestroy();
+    }
 
     private View.OnClickListener HandlerLogin = (V) ->
     {
+        if(presenter.comprobarConexion())
+        {
+            presenter.configurarBroadCastReciever();
+            JSONObject obj = presenter.getJsonObject(ingresoMail.getText().toString(),ingresoPass.getText().toString());
+            presenter.iniciarServicio(obj);
+        }
+        else
+        {
+            Toast.makeText(this,"sin conexion a internet.No se podra Loguear",Toast.LENGTH_LONG).show();
+        }
+    };
+
+    private View.OnClickListener HandlerRegistrate = (V) ->
+    {
         Intent newIntent = new Intent(this, Activity_Register.class);
-        newIntent.putExtra("descripcion",ingresoMail.getText().toString());
         startActivity(newIntent);
     };
+
+    @Override
+    public void mostrarResultadoConexion(String cod) {
+        Toast.makeText(this,cod,Toast.LENGTH_LONG).show();
+    }
 }

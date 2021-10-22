@@ -1,4 +1,4 @@
-package com.example.aplicacionsoa.model;
+package com.example.aplicacionsoa.view;
 
 import android.app.IntentService;
 import android.content.Intent;
@@ -19,13 +19,14 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
 
-public class Http_Conection_Service extends IntentService {
+public class Http_Conection_Service_POST extends IntentService {
 
     private HttpURLConnection connection;
     private URL url;
+    private int respuestaServidor;
 
-    public Http_Conection_Service() {
-        super("Http_Conection_Service");
+    public Http_Conection_Service_POST() {
+        super("Http_Conection_Service_POST");
     }
 
     @Override
@@ -33,7 +34,7 @@ public class Http_Conection_Service extends IntentService {
         String uri = intent.getExtras().getString("URI");
         try {
             JSONObject obj = new JSONObject(intent.getExtras().getString("JSON"));
-            int result = realizarPOST(obj,uri);
+            String result = realizarPOST(obj,uri);
             ejecutarPOST(result);
 
         } catch (JSONException e) {
@@ -41,11 +42,10 @@ public class Http_Conection_Service extends IntentService {
         }
     }
 
-    public int realizarPOST(JSONObject obj,String uri)
+    public String realizarPOST(JSONObject obj,String uri)
     {
         connection = null;
         String result = null;
-        int respuesta = -1;
         try {
             url = new URL(uri);
             connection = (HttpURLConnection) url.openConnection();
@@ -58,36 +58,44 @@ public class Http_Conection_Service extends IntentService {
             dots.write(obj.toString().getBytes(StandardCharsets.UTF_8));
             dots.flush();
             connection.connect();
-            respuesta = connection.getResponseCode();
-            if(respuesta == HttpURLConnection.HTTP_OK || respuesta == HttpURLConnection.HTTP_CREATED)
+            respuestaServidor = connection.getResponseCode();
+            if(respuestaServidor == HttpURLConnection.HTTP_OK || respuestaServidor == HttpURLConnection.HTTP_CREATED)
             {
                 InputStreamReader iSr = new InputStreamReader(connection.getInputStream());
                 result=convertInputStreamToString(iSr).toString();
             }
-            else if (respuesta == HttpURLConnection.HTTP_BAD_REQUEST)
+            else if(respuestaServidor == HttpURLConnection.HTTP_BAD_REQUEST)
             {
-                InputStreamReader iSr = new InputStreamReader(connection.getInputStream());
+                InputStreamReader iSr = new InputStreamReader(connection.getErrorStream());
                 result=convertInputStreamToString(iSr).toString();
             }
+
             dots.close();
             connection.disconnect();
-            return respuesta;
+            return result;
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return respuesta;
+        return result;
 
     }
 
-    public void ejecutarPOST(int result)
-    {
-        if(result!=-1)
-        {
-
-        }
+    public void ejecutarPOST(String result) throws JSONException {
         Intent i = new Intent(PresenterRegistro.ACTIONBROADCAST);
-        i.putExtra("rtaServ",Integer.valueOf(result).toString());
+        //Deberia preguntar por result == null para evitar problemas cuando no responde el server
+        JSONObject obj = new JSONObject(result);
+        boolean success = obj.getBoolean("success");
+        i.putExtra("success",success);
+        if(respuestaServidor == HttpURLConnection.HTTP_OK || respuestaServidor == HttpURLConnection.HTTP_CREATED)
+        {
+            i.putExtra("token_refresh",obj.getString("token_refresh"));
+            i.putExtra("token",obj.getString("token"));
+        }
+        else if(respuestaServidor == HttpURLConnection.HTTP_BAD_REQUEST)
+        {
+            i.putExtra("msjError",obj.getString("msg"));
+        }
         sendBroadcast(i);
     }
 

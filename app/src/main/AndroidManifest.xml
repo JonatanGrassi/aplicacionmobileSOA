@@ -17,11 +17,11 @@
         android:theme="@style/Theme.AplicacionSoa"
         android:usesCleartextTraffic="true" >
         <activity
-            android:name=".view.activity_inicio_app"
+            android:name=".view.Activity_inicio_app"
             android:exported="false" />
 
         <service
-            android:name=".model.Http_Conection_Service"
+            android:name=".view.Http_Conection_Service_POST"
             android:exported="false" >
         </service>
 
