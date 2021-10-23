@@ -11,14 +11,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.aplicacionsoa.R;
-import com.example.aplicacionsoa.presenter.Mvp;
+import com.example.aplicacionsoa.presenter.MvpLogin_Registro;
 import com.example.aplicacionsoa.presenter.PresenterLogin;
-import com.example.aplicacionsoa.presenter.PresenterRegistro;
 
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
-public class Activity_Login extends AppCompatActivity implements Mvp.View {
+public class Activity_Login extends AppCompatActivity implements MvpLogin_Registro.View {
 
     private EditText ingresoMail;
     private EditText ingresoPass;
@@ -39,6 +37,7 @@ public class Activity_Login extends AppCompatActivity implements Mvp.View {
         botonIngresar.setOnClickListener(HandlerLogin);
         registrate.setOnClickListener(HandlerRegistrate);
         presenter = new PresenterLogin(this);
+        presenter.configurarBroadCastReciever();
     }
 
     @Override
@@ -51,7 +50,6 @@ public class Activity_Login extends AppCompatActivity implements Mvp.View {
     {
         if(presenter.comprobarConexion())
         {
-            presenter.configurarBroadCastReciever();
             JSONObject obj = presenter.getJsonObject(ingresoMail.getText().toString(),ingresoPass.getText().toString());
             presenter.iniciarServicio(obj);
         }

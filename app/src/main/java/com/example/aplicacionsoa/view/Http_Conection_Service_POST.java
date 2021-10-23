@@ -24,6 +24,7 @@ public class Http_Conection_Service_POST extends IntentService {
     private HttpURLConnection connection;
     private URL url;
     private int respuestaServidor;
+    private String Pathbroadcast;
 
     public Http_Conection_Service_POST() {
         super("Http_Conection_Service_POST");
@@ -32,6 +33,7 @@ public class Http_Conection_Service_POST extends IntentService {
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
         String uri = intent.getExtras().getString("URI");
+        Pathbroadcast = intent.getExtras().getString("pathBroadcast");
         try {
             JSONObject obj = new JSONObject(intent.getExtras().getString("JSON"));
             String result = realizarPOST(obj,uri);
@@ -82,7 +84,7 @@ public class Http_Conection_Service_POST extends IntentService {
     }
 
     public void ejecutarPOST(String result) throws JSONException {
-        Intent i = new Intent(PresenterRegistro.ACTIONBROADCAST);
+        Intent i = new Intent(Pathbroadcast);
         //Deberia preguntar por result == null para evitar problemas cuando no responde el server
         JSONObject obj = new JSONObject(result);
         boolean success = obj.getBoolean("success");

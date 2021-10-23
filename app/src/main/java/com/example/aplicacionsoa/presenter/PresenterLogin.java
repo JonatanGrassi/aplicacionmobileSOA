@@ -9,20 +9,22 @@ import com.example.aplicacionsoa.Utilitarias;
 import com.example.aplicacionsoa.view.Http_Conection_Service_POST;
 import com.example.aplicacionsoa.view.Activity_Login;
 import com.example.aplicacionsoa.view.Activity_inicio_app;
+import com.example.aplicacionsoa.view.Http_Conection_Service_POST_EVENTOS;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class PresenterLogin implements Mvp.Presenter{
+public class PresenterLogin implements MvpLogin_Registro.Presenter{
 
     private Activity_Login viewLogin;
 
     ReceptorRespuestaServidor broadcast;
-    public static final String ACTIONBROADCAST = "com.example.aplicacionsoa.presenter.intentfilter.RTA_SERVIDOR";
+    public static final String ACTIONBROADCAST = "com.example.aplicacionsoa.presenter.intentfilter.RTA_SERVIDOR_LOGIN";
     private IntentFilter filtro;
     public static final String URI_LOGIN = "http://so-unlam.net.ar/api/api/login";
     private String token_refresh;
     private String token;
+    private boolean isRegisterBroadcast = false;
 
     public PresenterLogin(Activity_Login viewLogin) {
         this.viewLogin = viewLogin;
@@ -33,7 +35,11 @@ public class PresenterLogin implements Mvp.Presenter{
         Intent reg = new Intent(viewLogin, Http_Conection_Service_POST.class);
         reg.putExtra("URI",URI_LOGIN);
         reg.putExtra("JSON",obj.toString());
+        reg.putExtra("pathBroadcast",ACTIONBROADCAST);
         viewLogin.startService(reg);
+
+
+
     }
 
     @Override
@@ -42,20 +48,24 @@ public class PresenterLogin implements Mvp.Presenter{
         filtro.addCategory(Intent.CATEGORY_DEFAULT);
         broadcast = new ReceptorRespuestaServidor(this);
         viewLogin.registerReceiver(broadcast,filtro);
+        isRegisterBroadcast=true;
     }
 
     @Override
     public void liberarRecursos() {
-        if(Utilitarias.isMyServiceRunning(Http_Conection_Service_POST.class,viewLogin)) {
-            viewLogin.stopService(new Intent(viewLogin, Http_Conection_Service_POST.class));
-        }
-        if(broadcast!=null)
+        //if(Utilitarias.isMyServiceRunning(Http_Conection_Service_POST.class,viewLogin)) {
+         //   viewLogin.stopService(new Intent(viewLogin, Http_Conection_Service_POST.class));
+        //}
+        if(isRegisterBroadcast) {
             viewLogin.unregisterReceiver(broadcast);
+            isRegisterBroadcast=false;
+        }
     }
 
     @Override
     public boolean comprobarConexion() {
         return Utilitarias.comprobarConexion(viewLogin);
+
     }
 
     @Override
@@ -72,6 +82,11 @@ public class PresenterLogin implements Mvp.Presenter{
         liberarRecursos();
         //newIntent.putExtra("token_refresh",token_refresh);
         //newIntent.putExtra("token",token);
+
+    }
+
+    public void falloRegistroEvento(String msjError)
+    {
 
     }
 
@@ -93,6 +108,4 @@ public class PresenterLogin implements Mvp.Presenter{
         }
         return obj;
     }
-
-
 }

@@ -10,11 +10,11 @@ import android.widget.Toast;
 
 import com.example.aplicacionsoa.presenter.PresenterRegistro;
 import com.example.aplicacionsoa.R;
-import com.example.aplicacionsoa.presenter.Mvp;
+import com.example.aplicacionsoa.presenter.MvpLogin_Registro;
 
 import org.json.JSONObject;
 
-public class Activity_Register extends AppCompatActivity implements Mvp.View {
+public class Activity_Register extends AppCompatActivity implements MvpLogin_Registro.View {
     private EditText nombre;
     private EditText apellido;
     private EditText dni;
@@ -42,6 +42,7 @@ public class Activity_Register extends AppCompatActivity implements Mvp.View {
         enviarInformacionDeRegistro = (Button) findViewById(R.id.buttonRegistrar);
         enviarInformacionDeRegistro.setOnClickListener(HandlerRegistro);
         presenter = new PresenterRegistro(this);
+        presenter.configurarBroadCastReciever();
     }
 
     @Override
@@ -55,8 +56,6 @@ public class Activity_Register extends AppCompatActivity implements Mvp.View {
     {
         if(presenter.comprobarConexion())
         {
-
-        presenter.configurarBroadCastReciever();
         /*
         JSONObject obj = presenter.getJsonObject(ambiente.getText().toString(),nombre.getText().toString(),apellido.getText().toString()
                 ,mail.getText().toString(),dni.getText().toString(),contraseña.getText().toString(),comision.getText().toString()

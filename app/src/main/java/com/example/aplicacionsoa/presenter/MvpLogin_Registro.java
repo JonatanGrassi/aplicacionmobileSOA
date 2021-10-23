@@ -2,7 +2,7 @@ package com.example.aplicacionsoa.presenter;
 
 import org.json.JSONObject;
 
-public interface Mvp {
+public interface MvpLogin_Registro {
 
     interface View {
         public void mostrarResultadoConexion(String cod);

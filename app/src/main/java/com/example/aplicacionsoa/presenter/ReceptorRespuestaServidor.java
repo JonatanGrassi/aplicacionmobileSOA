@@ -4,14 +4,10 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.aplicacionsoa.view.Activity_Register;
-
 public class ReceptorRespuestaServidor extends BroadcastReceiver {
-        private Mvp.Presenter presenter;
+        private MvpLogin_Registro.Presenter presenter;
 
-        public ReceptorRespuestaServidor(Mvp.Presenter presenter) {
+        public ReceptorRespuestaServidor(MvpLogin_Registro.Presenter presenter) {
             this.presenter = presenter;
         }
         @Override
