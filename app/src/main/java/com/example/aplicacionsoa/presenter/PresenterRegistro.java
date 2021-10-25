@@ -2,9 +2,11 @@ package com.example.aplicacionsoa.presenter;
 
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.example.aplicacionsoa.model.PreferenciasCompartidas;
 import com.example.aplicacionsoa.view.Http_Conection_Service_POST;
 import com.example.aplicacionsoa.Utilitarias;
 import com.example.aplicacionsoa.view.Activity_Register;
@@ -31,9 +33,12 @@ public class PresenterRegistro implements MvpLogin_Registro.Presenter {
     private String token_refresh;
     private String token;
     private boolean isRegisterBroadcast = false;
+    private PreferenciasCompartidas preferencias;
+
 
     public PresenterRegistro(Activity_Register viewRegistro) {
         this.viewRegistro = viewRegistro;
+        this.preferencias = new PreferenciasCompartidas(viewRegistro,"REGISTROS");
     }
 
     @Override
@@ -140,6 +145,7 @@ public class PresenterRegistro implements MvpLogin_Registro.Presenter {
 
     @Override
     public void comunicarRespuestaExitosa() {
+        preferencias.guardarRegistro();
         viewRegistro.mostrarResultadoConexion("Se ha registrado correctamente");
         Intent newIntent = new Intent(viewRegistro, Activity_inicio_app.class);
         viewRegistro.startActivity(newIntent);
