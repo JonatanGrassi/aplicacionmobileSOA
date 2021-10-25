@@ -34,59 +34,91 @@
 
     <EditText
         android:id="@+id/PlainTextIngresoNum"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="302dp"
+        android:layout_height="60dp"
         android:ems="10"
-        android:inputType="number|phone"
+        android:hint="Ingrese su numero de celular"
+        android:inputType="none|phone"
         android:minHeight="48dp"
-        android:text="Ingrese numero celular"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.263" />
+        app:layout_constraintVertical_bias="0.309" />
 
     <EditText
         android:id="@+id/textPlainIngresCod"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="302dp"
+        android:layout_height="60dp"
         android:ems="10"
-        android:inputType="number"
+        android:hint="Ingrese codigo de seguridad"
+        android:inputType="none|number"
         android:minHeight="48dp"
-        android:text="ingrese codigo de seguridad"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.616" />
+        app:layout_constraintVertical_bias="0.687" />
 
     <Button
         android:id="@+id/enviarCodigoSeg"
-        android:layout_width="367dp"
-        android:layout_height="48dp"
-        android:text="recibir codigo de seguridad"
+        android:layout_width="280dp"
+        android:layout_height="60dp"
+        android:text="Enviar codigo de seguridad"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.382" />
+        app:layout_constraintVertical_bias="0.435" />
 
     <Button
         android:id="@+id/confirmarCod"
-        android:layout_width="367dp"
-        android:layout_height="48dp"
+        android:layout_width="280dp"
+        android:layout_height="60dp"
         android:text="confirmar codigo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.746" />;
+        app:layout_constraintVertical_bias="0.803" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Codigo de verificacion"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.198"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.62" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Telefono Celular"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.174"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.264" /><![CDATA[
+
+
+
+    ;
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+]]>
 </androidx.constraintlayout.widget.ConstraintLayout>

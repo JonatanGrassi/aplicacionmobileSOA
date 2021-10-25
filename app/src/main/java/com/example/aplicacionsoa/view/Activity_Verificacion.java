@@ -30,6 +30,9 @@ public class Activity_Verificacion extends AppCompatActivity {
     private int nivelDeBateria;
     private int escalaBateria;
     private Integer porcentajeBateria;
+    private int minCodigoVerificacion = 1000;
+    private int maxCodigoVerificacion = 9999;
+    private boolean mensajeEnviado = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +41,9 @@ public class Activity_Verificacion extends AppCompatActivity {
         TelephonyManager tMgr = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
         numeroText = (EditText) findViewById(R.id.PlainTextIngresoNum);
         codSeguridad = (EditText) findViewById(R.id.textPlainIngresCod);
+        codSeguridad.setEnabled(false);
         confirmarCod = (Button) findViewById(R.id.confirmarCod);
+        confirmarCod.setEnabled(false);
         enviarConfirmarCod = (Button) findViewById(R.id.enviarCodigoSeg);
 
         IntentFilter intentFilterBateria = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
@@ -54,31 +59,16 @@ public class Activity_Verificacion extends AppCompatActivity {
 
         enviarConfirmarCod.setOnClickListener((V) ->
         {
-            SmsManager sms = SmsManager.getDefault();
-            codigoDeConfirmacion = obtenerCodigoVerif(9999,1000).toString();
-            sms.sendTextMessage(numeroText.getText().toString(), null,codigoDeConfirmacion, null, null);
-
-        });
-
-        numeroText.setOnFocusChangeListener(new View.OnFocusChangeListener()
-        {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus)
-                {
-                    numeroText.setText("");
-                }
-            }
-        });
-
-        codSeguridad.setOnFocusChangeListener(new View.OnFocusChangeListener()
-        {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus)
-                {
-                    codSeguridad.setText("");
-                }
+            String telefono = numeroText.getText().toString();
+            if(telefono.isEmpty()) {
+                Toast.makeText(this, "Debe ingresar un numero de telefono", Toast.LENGTH_SHORT).show();
+            }else {
+                SmsManager sms = SmsManager.getDefault();
+                codigoDeConfirmacion = obtenerCodigoVerif(maxCodigoVerificacion, minCodigoVerificacion).toString();
+                sms.sendTextMessage(telefono, null, codigoDeConfirmacion, null, null);
+                Toast.makeText(this,"Codigo enviado, revise su mensajeria",Toast.LENGTH_SHORT).show();
+                codSeguridad.setEnabled(true);
+                confirmarCod.setEnabled(true);
             }
         });
 
@@ -86,6 +76,7 @@ public class Activity_Verificacion extends AppCompatActivity {
         confirmarCod.setOnClickListener((V) ->
         {
             /*
+
             if(codSeguridad.getText().toString().equals(codigoDeConfirmacion))
             {
                 Intent newIntent = new Intent(this, Activity_Login.class);
@@ -93,9 +84,11 @@ public class Activity_Verificacion extends AppCompatActivity {
             }
             else
             {
-                mostrarDialogoDeError();
+                //mostrarDialogoDeError();
+                Toast.makeText(this,"Codigo de verificacion erroneo",Toast.LENGTH_LONG).show();
             }
-             */
+            */
+
             Intent newIntent = new Intent(this, Activity_Login.class);
             startActivity(newIntent);
      });

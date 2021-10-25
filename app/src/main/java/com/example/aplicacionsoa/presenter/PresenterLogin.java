@@ -2,10 +2,12 @@ package com.example.aplicacionsoa.presenter;
 
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.example.aplicacionsoa.ClasesUtilitarias.Utilitarias;
+import com.example.aplicacionsoa.Utilitarias;
+import com.example.aplicacionsoa.model.PreferenciasCompartidas;
 import com.example.aplicacionsoa.view.Http_Conection_Service_POST;
 import com.example.aplicacionsoa.view.Activity_Login;
 import com.example.aplicacionsoa.view.Activity_inicio_app;
@@ -24,9 +26,11 @@ public class PresenterLogin implements MvpLogin_Registro.Presenter{
     private String token_refresh;
     private String token;
     private boolean isRegisterBroadcast = false;
+    private PreferenciasCompartidas preferencias;
 
     public PresenterLogin(Activity_Login viewLogin) {
         this.viewLogin = viewLogin;
+        this.preferencias = new PreferenciasCompartidas(viewLogin,"SESIONES_FALLIDAS");
     }
 
     @Override
@@ -36,8 +40,6 @@ public class PresenterLogin implements MvpLogin_Registro.Presenter{
         reg.putExtra("JSON",obj.toString());
         reg.putExtra("pathBroadcast",ACTIONBROADCAST);
         viewLogin.startService(reg);
-
-
 
     }
 
@@ -92,6 +94,7 @@ public class PresenterLogin implements MvpLogin_Registro.Presenter{
 
     @Override
     public void comunicarRespuestaFallida(String msj) {
+        preferencias.guardarSesionFallida();
         viewLogin.mostrarResultadoConexion(msj);
         liberarRecursos();
     }
