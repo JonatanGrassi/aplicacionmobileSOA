@@ -5,12 +5,11 @@ import android.content.Intent;
 
 import androidx.annotation.Nullable;
 
-import com.example.aplicacionsoa.presenter.PresenterRegistro;
+import com.example.aplicacionsoa.ClasesUtilitarias.Utilitarias;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -64,12 +63,12 @@ public class Http_Conection_Service_POST extends IntentService {
             if(respuestaServidor == HttpURLConnection.HTTP_OK || respuestaServidor == HttpURLConnection.HTTP_CREATED)
             {
                 InputStreamReader iSr = new InputStreamReader(connection.getInputStream());
-                result=convertInputStreamToString(iSr).toString();
+                result= Utilitarias.convertInputStreamToString(iSr).toString();
             }
             else if(respuestaServidor == HttpURLConnection.HTTP_BAD_REQUEST)
             {
                 InputStreamReader iSr = new InputStreamReader(connection.getErrorStream());
-                result=convertInputStreamToString(iSr).toString();
+                result=Utilitarias.convertInputStreamToString(iSr).toString();
             }
 
             dots.close();
@@ -101,14 +100,5 @@ public class Http_Conection_Service_POST extends IntentService {
         sendBroadcast(i);
     }
 
-    private StringBuilder convertInputStreamToString(InputStreamReader inputStream) throws IOException {
-        BufferedReader br = new BufferedReader(inputStream);
-        StringBuilder result = new StringBuilder();
-        String line;
-        while ((line = br.readLine()) != null) {
-            result.append(line + "\n");
-        }
-        br.close();
-        return result;
-    }
+
 }

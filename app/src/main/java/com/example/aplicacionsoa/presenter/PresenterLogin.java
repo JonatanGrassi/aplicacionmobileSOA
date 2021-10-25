@@ -5,11 +5,10 @@ import android.content.IntentFilter;
 
 import androidx.annotation.NonNull;
 
-import com.example.aplicacionsoa.Utilitarias;
+import com.example.aplicacionsoa.ClasesUtilitarias.Utilitarias;
 import com.example.aplicacionsoa.view.Http_Conection_Service_POST;
 import com.example.aplicacionsoa.view.Activity_Login;
 import com.example.aplicacionsoa.view.Activity_inicio_app;
-import com.example.aplicacionsoa.view.Http_Conection_Service_POST_EVENTOS;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -79,6 +78,7 @@ public class PresenterLogin implements MvpLogin_Registro.Presenter{
         viewLogin.mostrarResultadoConexion("Se ha logueado exitosamente");
         Intent newIntent = new Intent(viewLogin, Activity_inicio_app.class);
         viewLogin.startActivity(newIntent);
+
         liberarRecursos();
         //newIntent.putExtra("token_refresh",token_refresh);
         //newIntent.putExtra("token",token);

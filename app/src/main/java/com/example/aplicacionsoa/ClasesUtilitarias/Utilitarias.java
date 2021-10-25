@@ -1,4 +1,4 @@
-package com.example.aplicacionsoa;
+package com.example.aplicacionsoa.ClasesUtilitarias;
 
 import android.app.ActivityManager;
 import android.content.Context;
@@ -6,6 +6,10 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Utilitarias {
 
@@ -30,4 +34,16 @@ public class Utilitarias {
             }
         } return false;
     }
+
+    public static StringBuilder convertInputStreamToString(InputStreamReader inputStream) throws IOException {
+        BufferedReader br = new BufferedReader(inputStream);
+        StringBuilder result = new StringBuilder();
+        String line;
+        while ((line = br.readLine()) != null) {
+            result.append(line + "\n");
+        }
+        br.close();
+        return result;
+    }
+
 }

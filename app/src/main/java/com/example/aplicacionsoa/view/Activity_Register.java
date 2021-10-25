@@ -56,15 +56,16 @@ public class Activity_Register extends AppCompatActivity implements MvpLogin_Reg
     {
         if(presenter.comprobarConexion())
         {
-        /*
+
         JSONObject obj = presenter.getJsonObject(ambiente.getText().toString(),nombre.getText().toString(),apellido.getText().toString()
                 ,mail.getText().toString(),dni.getText().toString(),contraseña.getText().toString(),comision.getText().toString()
                 ,grupo.getText().toString());
-                */
+
+            /*
             JSONObject obj = presenter.getJsonObject("TEST","jonatan","grassi"
                     ,"jonatangrassi22@gmail.com","40077893","12342131234","2900"
                     ,"1");
-
+    */
         presenter.iniciarServicio(obj);
         }
         else

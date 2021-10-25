@@ -37,7 +37,7 @@ public class Activity_Login extends AppCompatActivity implements MvpLogin_Regist
         botonIngresar.setOnClickListener(HandlerLogin);
         registrate.setOnClickListener(HandlerRegistrate);
         presenter = new PresenterLogin(this);
-        presenter.configurarBroadCastReciever();
+
     }
 
     @Override
@@ -48,6 +48,7 @@ public class Activity_Login extends AppCompatActivity implements MvpLogin_Regist
 
     private View.OnClickListener HandlerLogin = (V) ->
     {
+        presenter.configurarBroadCastReciever();
         if(presenter.comprobarConexion())
         {
             JSONObject obj = presenter.getJsonObject(ingresoMail.getText().toString(),ingresoPass.getText().toString());
