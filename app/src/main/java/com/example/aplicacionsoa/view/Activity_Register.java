@@ -42,7 +42,7 @@ public class Activity_Register extends AppCompatActivity implements MvpLogin_Reg
         enviarInformacionDeRegistro = (Button) findViewById(R.id.buttonRegistrar);
         enviarInformacionDeRegistro.setOnClickListener(HandlerRegistro);
         presenter = new PresenterRegistro(this);
-        presenter.configurarBroadCastReciever();
+
     }
 
     @Override
@@ -54,6 +54,7 @@ public class Activity_Register extends AppCompatActivity implements MvpLogin_Reg
 
     private View.OnClickListener HandlerRegistro = (V) ->
     {
+        presenter.configurarBroadCastReciever();
         if(presenter.comprobarConexion())
         {
 

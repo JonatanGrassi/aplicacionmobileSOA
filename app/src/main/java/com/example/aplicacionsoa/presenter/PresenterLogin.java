@@ -6,7 +6,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.example.aplicacionsoa.Utilitarias;
+import com.example.aplicacionsoa.ClasesUtilitarias.Utilitarias;
 import com.example.aplicacionsoa.model.PreferenciasCompartidas;
 import com.example.aplicacionsoa.view.Http_Conection_Service_POST;
 import com.example.aplicacionsoa.view.Activity_Login;

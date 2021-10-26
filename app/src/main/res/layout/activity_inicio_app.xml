@@ -86,10 +86,10 @@
         android:text="Discoteca" />
 
     <RadioButton
-        android:id="@+id/radButtonBar"
+        android:id="@+id/radButtonEstadios"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:text="Bar" />
+        android:text="Estadio" />
 
   </RadioGroup>
 

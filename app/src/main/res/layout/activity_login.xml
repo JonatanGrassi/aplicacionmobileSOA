@@ -34,7 +34,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewRegistrate"
+        android:id="@+id/textViewSinCuenta"
         android:layout_width="134dp"
         android:layout_height="27dp"
         android:text="Sin Cuenta?..."
@@ -47,7 +47,7 @@
         app:layout_constraintVertical_bias="0.598" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textViewRegistrate"
         android:layout_width="131dp"
         android:layout_height="52dp"
         android:layout_marginStart="6dp"
@@ -58,7 +58,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.226"
-        app:layout_constraintStart_toEndOf="@+id/textViewRegistrate"
+        app:layout_constraintStart_toEndOf="@+id/textViewSinCuenta"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.667" />
 

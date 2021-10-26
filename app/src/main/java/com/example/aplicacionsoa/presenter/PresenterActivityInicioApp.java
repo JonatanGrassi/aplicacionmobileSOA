@@ -1,13 +1,21 @@
 package com.example.aplicacionsoa.presenter;
 
 import android.content.Intent;
+import android.os.Bundle;
+import android.os.Parcelable;
 
+import com.example.aplicacionsoa.ClasesUtilitarias.Discoteca;
+import com.example.aplicacionsoa.ClasesUtilitarias.Estadios;
+import com.example.aplicacionsoa.ClasesUtilitarias.Local;
+import com.example.aplicacionsoa.ClasesUtilitarias.Restaurant;
 import com.example.aplicacionsoa.view.Activity_inicio_app;
 import com.example.aplicacionsoa.view.activity_opciones_app;
 
+import java.io.Serializable;
+
 public class PresenterActivityInicioApp implements MvpInicioApp.Presenter{
     private Activity_inicio_app view;
-    private String eleccion;
+    private Local localElegido;
     private String nombreLocal;
     private Double metrosCuadrados;
 
@@ -19,18 +27,17 @@ public class PresenterActivityInicioApp implements MvpInicioApp.Presenter{
 
 
     @Override
-    public Boolean validarEntradas(boolean checkRestaurant, boolean checkBar, boolean checkDiscoteca, String nombreLocal,String metrosCuadrados) {
-        eleccion="";
+    public Boolean validarEntradas(boolean checkRestaurant, boolean checkEstadios, boolean checkDiscoteca, String nombreLocal,String metrosCuadrados) {
         boolean resultado=true;
         this.nombreLocal = nombreLocal;
         if(checkRestaurant)
-            eleccion = "restaurant";
-        else if(checkBar)
-            eleccion = "bar";
+            localElegido = new Restaurant();
+        else if(checkEstadios)
+            localElegido = new Estadios();
         else if(checkDiscoteca)
-            eleccion = "discoteca";
+            localElegido = new Discoteca();
 
-        if(eleccion.equals(""))
+        if(localElegido == null)
         {
             view.errorSeleccionDeLocal("debe seleccionar un tipo de local");
             resultado = false;
@@ -54,7 +61,9 @@ public class PresenterActivityInicioApp implements MvpInicioApp.Presenter{
     public void cambiarActivity() {
         Intent newIntent = new Intent(view, activity_opciones_app.class);
         newIntent.putExtra("nombreLocal",this.nombreLocal);
-        newIntent.putExtra("eleccion",this.eleccion);
+        Bundle bundle= new Bundle();
+        bundle.putSerializable("eleccion", this.localElegido);
+        newIntent.putExtra("eleccion",bundle);
         newIntent.putExtra("metrosCuadrados",this.metrosCuadrados);
         view.startActivity(newIntent);
     }

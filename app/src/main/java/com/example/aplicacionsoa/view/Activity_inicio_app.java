@@ -11,16 +11,13 @@ import android.widget.Toast;
 import com.example.aplicacionsoa.R;
 import com.example.aplicacionsoa.presenter.MvpInicioApp;
 import com.example.aplicacionsoa.presenter.PresenterActivityInicioApp;
-import com.example.aplicacionsoa.presenter.PresenterLogin;
-
-import org.json.JSONObject;
 
 public class Activity_inicio_app extends AppCompatActivity implements MvpInicioApp.View {
 
     private RadioButton radRestaurante;
     private EditText nombreLocal;
     private EditText metrosCuadrado;
-    private RadioButton radBar;
+    private RadioButton radEstadios;
     private RadioButton radDiscoteca;
     private Button botonAceptar;
     private MvpInicioApp.Presenter presenter ;
@@ -36,7 +33,7 @@ public class Activity_inicio_app extends AppCompatActivity implements MvpInicioA
         metrosCuadrado.setOnFocusChangeListener(SetOnFocusMetrosCuadrados);
         radRestaurante = (RadioButton) findViewById(R.id.radButtonRestaurante);
         radDiscoteca = (RadioButton) findViewById(R.id.radButtonDiscoteca);
-        radBar = (RadioButton) findViewById(R.id.radButtonBar);
+        radEstadios = (RadioButton) findViewById(R.id.radButtonEstadios);
         botonAceptar = (Button) findViewById(R.id.buttonAceptar);
         botonAceptar.setOnClickListener(HandlerAceptar);
         presenter = new PresenterActivityInicioApp(this);
@@ -44,7 +41,7 @@ public class Activity_inicio_app extends AppCompatActivity implements MvpInicioA
 
     private View.OnClickListener HandlerAceptar = (V) ->
     {
-       if(presenter.validarEntradas(radRestaurante.isChecked(),radBar.isChecked(),radDiscoteca.isChecked(),nombreLocal.getText().toString(),metrosCuadrado.getText().toString()))
+       if(presenter.validarEntradas(radRestaurante.isChecked(), radEstadios.isChecked(),radDiscoteca.isChecked(),nombreLocal.getText().toString(),metrosCuadrado.getText().toString()))
        {
            presenter.cambiarActivity();
        }

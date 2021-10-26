@@ -6,7 +6,6 @@ import java.util.Arrays;
 public class Estadios extends Local{
 
 
-
     public Estadios()
     {
         super("Estadios",50);
@@ -20,6 +19,6 @@ public class Estadios extends Local{
 
     @Override
     public Integer calcularAforo(Double metrosCuadrados) {
-        return null;
+        return (int)(metrosCuadrados/2.25);
     }
 }

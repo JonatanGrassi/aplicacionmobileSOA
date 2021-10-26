@@ -1,8 +1,9 @@
 package com.example.aplicacionsoa.ClasesUtilitarias;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class Local {
+public abstract class Local implements Serializable {
     protected String tipoDeLocal;
     protected Integer porcetajeAforo;
     protected ArrayList<String> recomendaciones;
@@ -29,5 +30,10 @@ public abstract class Local {
     public String getTipoDeLocal()
     {
         return this.tipoDeLocal;
+    }
+
+    public Integer obtenerPorcetajeAforo()
+    {
+        return this.porcetajeAforo;
     }
 }

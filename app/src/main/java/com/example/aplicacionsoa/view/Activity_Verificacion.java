@@ -43,7 +43,7 @@ public class Activity_Verificacion extends AppCompatActivity {
         codSeguridad = (EditText) findViewById(R.id.textPlainIngresCod);
         codSeguridad.setEnabled(false);
         confirmarCod = (Button) findViewById(R.id.confirmarCod);
-        confirmarCod.setEnabled(false);
+        //confirmarCod.setEnabled(false);
         enviarConfirmarCod = (Button) findViewById(R.id.enviarCodigoSeg);
 
         IntentFilter intentFilterBateria = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
