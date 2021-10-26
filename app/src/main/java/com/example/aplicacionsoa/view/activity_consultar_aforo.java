@@ -41,7 +41,7 @@ public class activity_consultar_aforo extends AppCompatActivity implements MvpCo
         capacidadTotal.setEnabled(true);
         if(aforo != 100)
         {
-           capacidadTotal.setText("Cantidad de personas permitidas: " + presenter.calcularCantidadPersoansPorMCuadrado());
+           capacidadTotal.setText(presenter.calcularCantidadPersoansPorMCuadrado().toString() +" Personas");
         }
 
     }
