@@ -28,9 +28,7 @@ public class Activity_inicio_app extends AppCompatActivity implements MvpInicioA
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio_app);
         nombreLocal = (EditText) findViewById(R.id.editTextNombreLocal);
-        nombreLocal.setOnFocusChangeListener(SetOnFocusLocal);
         metrosCuadrado = (EditText) findViewById(R.id.editTextMetrosCuadrados);
-        metrosCuadrado.setOnFocusChangeListener(SetOnFocusMetrosCuadrados);
         radRestaurante = (RadioButton) findViewById(R.id.radButtonRestaurante);
         radDiscoteca = (RadioButton) findViewById(R.id.radButtonDiscoteca);
         radEstadios = (RadioButton) findViewById(R.id.radButtonEstadios);
@@ -46,28 +44,6 @@ public class Activity_inicio_app extends AppCompatActivity implements MvpInicioA
            presenter.cambiarActivity();
        }
     };
-
-    private View.OnFocusChangeListener SetOnFocusLocal = (new View.OnFocusChangeListener()
-    {
-        @Override
-        public void onFocusChange(View v, boolean hasFocus) {
-        if(hasFocus)
-        {
-            nombreLocal.setText("");
-        }
-    }
-    });
-
-    private View.OnFocusChangeListener SetOnFocusMetrosCuadrados = (new View.OnFocusChangeListener()
-    {
-        @Override
-        public void onFocusChange(View v, boolean hasFocus) {
-            if(hasFocus)
-            {
-                metrosCuadrado.setText("");
-            }
-        }
-    });
 
 
     @Override
