@@ -35,4 +35,5 @@ public class PresenterActivityOpcionesApp implements MvpOpcionesApp.Presenter{
         nombreLocal = view.getIntent().getExtras().getString("nombreLocal");
         view.setearNombreDeLocal(nombreLocal);
     }
+
 }

@@ -6,27 +6,23 @@ import android.content.Intent;
 
 public class ReceptorRespuestaServidorEventos extends BroadcastReceiver {
 
-    private PresenterRegistro presenter;
+    private MvpGestionarIngresos.Presenter presenter;
 
-    public ReceptorRespuestaServidorEventos(PresenterRegistro presenter) {
+    public ReceptorRespuestaServidorEventos(MvpGestionarIngresos.Presenter presenter) {
         this.presenter = presenter;
     }
 
     @Override
     public void onReceive(Context context, Intent intent) {
         boolean success = intent.getExtras().getBoolean("success");
-        if(success)
-        {
-            //String token_refresh = intent.getExtras().getString("token_refresh");
-            //String token = intent.getExtras().getString("token");
-            //presenter.obtenerTokens(token_refresh,token);
-            //presenter.comunicarRespuestaExitosa();
-
-        }
-        else
+        presenter.desregistrarBroadcastEventos();
+        if(!success)
         {
             String msjError = intent.getExtras().getString("msjError");
-            presenter.falloRegistroEvento();
+            if(msjError.equals("tiempo de sesion expirado."))
+                presenter.falloTokenExpirado();
         }
+        else
+            presenter.registracionExitosa();
     }
 }

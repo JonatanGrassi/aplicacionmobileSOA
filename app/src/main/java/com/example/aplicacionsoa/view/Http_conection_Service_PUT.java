@@ -61,7 +61,7 @@ public class Http_conection_Service_PUT extends IntentService {
                 InputStreamReader iSr = new InputStreamReader(connection.getInputStream());
                 result= Utilitarias.convertInputStreamToString(iSr).toString();
             }
-            else if(respuestaServidor == HttpURLConnection.HTTP_BAD_REQUEST)
+            else if(respuestaServidor == HttpURLConnection.HTTP_BAD_REQUEST )
             {
                 InputStreamReader iSr = new InputStreamReader(connection.getErrorStream());
                 result=Utilitarias.convertInputStreamToString(iSr).toString();

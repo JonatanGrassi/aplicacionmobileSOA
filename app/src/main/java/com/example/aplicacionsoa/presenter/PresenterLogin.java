@@ -23,8 +23,8 @@ public class PresenterLogin implements MvpLogin_Registro.Presenter{
     public static final String ACTIONBROADCAST = "com.example.aplicacionsoa.presenter.intentfilter.RTA_SERVIDOR_LOGIN";
     private IntentFilter filtro;
     public static final String URI_LOGIN = "http://so-unlam.net.ar/api/api/login";
-    private String token_refresh;
-    private String token;
+    static String token_refresh;
+    static String token;
     private boolean isRegisterBroadcast = false;
     private PreferenciasCompartidas preferencias;
 
@@ -69,11 +69,6 @@ public class PresenterLogin implements MvpLogin_Registro.Presenter{
 
     }
 
-    @Override
-    public void obtenerTokens(String token, String token_refresh) {
-        this.token=token;
-        this.token_refresh=token_refresh;
-    }
 
     @Override
     public void comunicarRespuestaExitosa() {

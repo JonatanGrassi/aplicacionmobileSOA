@@ -52,6 +52,7 @@ public class Activity_Login extends AppCompatActivity implements MvpLogin_Regist
         if(presenter.comprobarConexion())
         {
             JSONObject obj = presenter.getJsonObject(ingresoMail.getText().toString(),ingresoPass.getText().toString());
+            //JSONObject obj = presenter.getJsonObject("jonatangrassi22@gmail.com","hola12345");
             presenter.iniciarServicio(obj);
         }
         else

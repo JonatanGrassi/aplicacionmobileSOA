@@ -1,5 +1,6 @@
 package com.example.aplicacionsoa.presenter;
 
+import android.hardware.SensorManager;
 import android.os.Bundle;
 
 import com.example.aplicacionsoa.ClasesUtilitarias.Local;

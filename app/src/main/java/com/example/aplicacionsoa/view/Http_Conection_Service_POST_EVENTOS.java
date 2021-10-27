@@ -65,7 +65,7 @@ public class Http_Conection_Service_POST_EVENTOS extends IntentService {
                 InputStreamReader iSr = new InputStreamReader(connection.getInputStream());
                 result= Utilitarias.convertInputStreamToString(iSr).toString();
             }
-            else if(respuestaServidor == HttpURLConnection.HTTP_BAD_REQUEST)
+            else if(respuestaServidor == HttpURLConnection.HTTP_BAD_REQUEST || respuestaServidor == HttpURLConnection.HTTP_UNAUTHORIZED)
             {
                 InputStreamReader iSr = new InputStreamReader(connection.getErrorStream());
                 result=Utilitarias.convertInputStreamToString(iSr).toString();
@@ -93,7 +93,7 @@ public class Http_Conection_Service_POST_EVENTOS extends IntentService {
             i.putExtra("type_events",obj.getJSONObject("event").getString("type_events"));
             i.putExtra("description",obj.getJSONObject("event").getString("description"));
         }
-        else if(respuestaServidor == HttpURLConnection.HTTP_BAD_REQUEST)
+        else if(respuestaServidor == HttpURLConnection.HTTP_BAD_REQUEST || respuestaServidor == HttpURLConnection.HTTP_UNAUTHORIZED)
         {
             i.putExtra("msjError",obj.getString("msg"));
         }

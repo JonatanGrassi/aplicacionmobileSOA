@@ -4,10 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public interface MvpOpcionesApp {
 
-
     interface View {
         public void setearNombreDeLocal(String nombre);
-
     }
     interface Presenter
     {

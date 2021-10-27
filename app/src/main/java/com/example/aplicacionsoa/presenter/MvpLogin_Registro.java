@@ -13,7 +13,6 @@ public interface MvpLogin_Registro {
         public void configurarBroadCastReciever();
         public void liberarRecursos();
         public boolean comprobarConexion();
-        public void obtenerTokens(String token,String token_refresh);
         public void comunicarRespuestaExitosa();
         public void comunicarRespuestaFallida(String msj);
     }
