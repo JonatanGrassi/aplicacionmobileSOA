@@ -22,6 +22,6 @@ public class Discoteca extends Local{
     //1,5 metros de distancia entre personas 1,5 x 1,5 m2 = 2.25
     @Override
     public Integer calcularAforo(Double metrosCuadrados) {
-        return (int)(metrosCuadrados / 2.25);
+        return (int)( (metrosCuadrados*(super.porcetajeAforo/100)) / 2.25);
     }
 }

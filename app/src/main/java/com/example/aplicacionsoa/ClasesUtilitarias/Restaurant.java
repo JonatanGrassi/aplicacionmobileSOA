@@ -17,6 +17,6 @@ public class Restaurant extends Local {
 
     @Override
     public Integer calcularAforo(Double metrosCuadrados) {
-        return null;
+        return (int)( (metrosCuadrados*(super.porcetajeAforo/100)) / 2.25);
     }
 }
