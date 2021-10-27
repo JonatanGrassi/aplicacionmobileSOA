@@ -188,7 +188,7 @@ public class PresenterGestionIngresos implements MvpGestionarIngresos.Presenter,
     @Override
     public void desregistrarBroadcastRefresh() {
         if(broadCastRefreshRegistred) {
-            view.unregisterReceiver(broadcastEventos);
+            view.unregisterReceiver(broadcastActualizarToken);
             broadCastRefreshRegistred = false;
         }
     }
@@ -201,6 +201,12 @@ public class PresenterGestionIngresos implements MvpGestionarIngresos.Presenter,
     @Override
     public void registracionExitosa() {
         view.mostrarRegistracionEventoExitosa();
+    }
+
+    @Override
+    public void actualizarTokens(String token,String token_refresh) {
+        this.token = token;
+        this.token_refresh =token_refresh;
     }
 
     @Override

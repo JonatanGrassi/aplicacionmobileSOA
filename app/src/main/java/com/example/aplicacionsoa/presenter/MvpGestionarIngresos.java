@@ -28,5 +28,6 @@ public interface MvpGestionarIngresos {
         public void desregistrarBroadcastRefresh();
         public void reenviarRegistroEvento();
         public void registracionExitosa();
+        public void actualizarTokens(String token,String token_refresh);
     }
 }

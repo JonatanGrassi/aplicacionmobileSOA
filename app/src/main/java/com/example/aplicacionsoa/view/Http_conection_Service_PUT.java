@@ -85,8 +85,8 @@ public class Http_conection_Service_PUT extends IntentService {
         i.putExtra("success",success);
         if(respuestaServidor == HttpURLConnection.HTTP_OK || respuestaServidor == HttpURLConnection.HTTP_CREATED)
         {
-            i.putExtra("token",obj.getJSONObject("event").getString("type_events"));
-            i.putExtra("token_refresh",obj.getString("description"));
+            i.putExtra("token",obj.getString("token"));
+            i.putExtra("token_refresh",obj.getString("token_refresh"));
         }
         else if(respuestaServidor == HttpURLConnection.HTTP_BAD_REQUEST)
         {

@@ -19,7 +19,7 @@ public class Estadios extends Local{
 
     @Override
     public Integer calcularAforo(Double metrosCuadrados) {
-
-        return (int)( (metrosCuadrados*(super.porcetajeAforo/100)) / 2.25);
+        Double aforo = (double)super.porcetajeAforo;
+        return (int)(metrosCuadrados*(aforo/100)/2.25);
     }
 }

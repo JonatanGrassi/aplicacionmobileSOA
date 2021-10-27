@@ -21,9 +21,9 @@ public class ReceptorRespuestaServidorRefreshToken extends BroadcastReceiver {
             PresenterRegistro.token = token;
             PresenterLogin.token = token;
             PresenterLogin.token = token_refresh;
+            presenter.actualizarTokens(token,token_refresh);
             presenter.desregistrarBroadcastRefresh();
             presenter.reenviarRegistroEvento();
-
         }
         /*
         else

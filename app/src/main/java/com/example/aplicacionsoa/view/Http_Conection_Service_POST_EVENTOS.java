@@ -96,6 +96,7 @@ public class Http_Conection_Service_POST_EVENTOS extends IntentService {
         else if(respuestaServidor == HttpURLConnection.HTTP_BAD_REQUEST || respuestaServidor == HttpURLConnection.HTTP_UNAUTHORIZED)
         {
             i.putExtra("msjError",obj.getString("msg"));
+            i.putExtra("codigoError",respuestaServidor);
         }
         sendBroadcast(i);
     }
