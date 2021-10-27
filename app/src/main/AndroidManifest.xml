@@ -15,44 +15,56 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AplicacionSoa"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        >
+
+        <activity
+            android:name=".view.Activity_Metricas"
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.activity_consultar_aforo"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.activity_consultar_recomendaciones"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.activity_gestionarIngresos"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.activity_opciones_app"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.Activity_inicio_app"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
 
         <service
             android:name=".view.Http_Conection_Service_POST"
             android:exported="false" />
-
         <service
             android:name=".view.Http_Conection_Service_POST_EVENTOS"
             android:exported="false" />
-
         <service
             android:name=".view.Http_conection_Service_PUT"
             android:exported="false" />
 
         <activity
             android:name=".view.Activity_Login"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.Activity_Register"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.Activity_Verificacion"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
