@@ -40,7 +40,7 @@ public class PresenterLogin implements MvpLogin_Registro.Presenter{
         reg.putExtra("JSON",obj.toString());
         reg.putExtra("pathBroadcast",ACTIONBROADCAST);
         viewLogin.startService(reg);
-
+        viewLogin.comunicarRequestEnProceso();
     }
 
     @Override

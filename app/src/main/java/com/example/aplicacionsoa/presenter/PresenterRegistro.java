@@ -41,6 +41,7 @@ public class PresenterRegistro implements MvpLogin_Registro.Presenter {
         reg.putExtra("JSON",obj.toString());
         reg.putExtra("pathBroadcast",ACTIONBROADCAST);
         viewRegistro.startService(reg);
+        viewRegistro.comunicarRequestEnProceso();
     }
 
     @NonNull
