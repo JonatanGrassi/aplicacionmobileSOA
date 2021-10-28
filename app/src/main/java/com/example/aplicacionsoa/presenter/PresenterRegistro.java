@@ -31,7 +31,7 @@ public class PresenterRegistro implements MvpLogin_Registro.Presenter {
 
     public PresenterRegistro(Activity_Register viewRegistro) {
         this.viewRegistro = viewRegistro;
-        this.preferencias = new PreferenciasCompartidas(viewRegistro,"REGISTROS");
+        this.preferencias = new PreferenciasCompartidas(viewRegistro,"METRICAS");
     }
 
     @Override

@@ -20,6 +20,7 @@ public class activity_opciones_app extends AppCompatActivity implements MvpOpcio
     private Button botonGestionar;
     private Button botonConsultarTips;
     private Button botonConsultarAforo;
+    private Button botonMostrarMetricas;
     private MvpOpcionesApp.Presenter presenter;
 
     @Override
@@ -30,9 +31,12 @@ public class activity_opciones_app extends AppCompatActivity implements MvpOpcio
         botonConsultarTips = (Button) findViewById(R.id.buttonConsultarRecomendaciones);
         botonGestionar = (Button) findViewById(R.id.ButtonGestionarIngresos);
         nombreLocal = (TextView) findViewById(R.id.textViewNombreLocal);
+        botonMostrarMetricas = (Button)findViewById(R.id.botonMostrarMetricas);
         botonConsultarAforo.setOnClickListener(HandlerConsultarAforo);
         botonConsultarTips.setOnClickListener(HandlerConsultarTips);
         botonGestionar.setOnClickListener(HandlerGestionar);
+        botonMostrarMetricas.setOnClickListener(HandlerMostrarMetricas);
+
         presenter = new PresenterActivityOpcionesApp(this);
         presenter.obtenerNombreLocal();
     }
@@ -50,6 +54,10 @@ public class activity_opciones_app extends AppCompatActivity implements MvpOpcio
     private View.OnClickListener HandlerGestionar = (V) ->
     {
         presenter.cambiarActivity(activity_gestionarIngresos.class);
+    };
+
+    private View.OnClickListener HandlerMostrarMetricas = (V) -> {
+        presenter.cambiarActivity(Activity_Metricas.class);
     };
 
     @Override

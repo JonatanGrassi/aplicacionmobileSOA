@@ -30,7 +30,7 @@ public class PresenterLogin implements MvpLogin_Registro.Presenter{
 
     public PresenterLogin(Activity_Login viewLogin) {
         this.viewLogin = viewLogin;
-        this.preferencias = new PreferenciasCompartidas(viewLogin,"SESIONES_FALLIDAS");
+        this.preferencias = new PreferenciasCompartidas(viewLogin,"METRICAS");
     }
 
     @Override
