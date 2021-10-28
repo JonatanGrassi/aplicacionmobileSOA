@@ -4,6 +4,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
+import java.net.HttpURLConnection;
+
 public class ReceptorRespuestaServidorEventos extends BroadcastReceiver {
 
     private MvpGestionarIngresos.Presenter presenter;
@@ -15,11 +17,12 @@ public class ReceptorRespuestaServidorEventos extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         boolean success = intent.getExtras().getBoolean("success");
+        int codError = intent.getExtras().getInt("codigoError");
         presenter.desregistrarBroadcastEventos();
         if(!success)
         {
             String msjError = intent.getExtras().getString("msjError");
-            if(msjError.equals("tiempo de sesion expirado."))
+            if(codError==HttpURLConnection.HTTP_UNAUTHORIZED)
                 presenter.falloTokenExpirado();
         }
         else
