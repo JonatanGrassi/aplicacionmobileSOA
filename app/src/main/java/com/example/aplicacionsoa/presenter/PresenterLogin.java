@@ -30,7 +30,7 @@ public class PresenterLogin implements MvpLogin_Registro.Presenter{
 
     public PresenterLogin(Activity_Login viewLogin) {
         this.viewLogin = viewLogin;
-        this.preferencias = new PreferenciasCompartidas(viewLogin,"SESIONES_FALLIDAS");
+        this.preferencias = new PreferenciasCompartidas(viewLogin,"METRICAS");
     }
 
     @Override
@@ -40,7 +40,7 @@ public class PresenterLogin implements MvpLogin_Registro.Presenter{
         reg.putExtra("JSON",obj.toString());
         reg.putExtra("pathBroadcast",ACTIONBROADCAST);
         viewLogin.startService(reg);
-
+        viewLogin.comunicarRequestEnProceso();
     }
 
     @Override

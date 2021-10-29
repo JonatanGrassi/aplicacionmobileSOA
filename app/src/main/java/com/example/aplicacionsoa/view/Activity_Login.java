@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +24,7 @@ public class Activity_Login extends AppCompatActivity implements MvpLogin_Regist
     private TextView registrate;
     private Button botonIngresar;
     private PresenterLogin presenter;
+    private ProgressBar progressBarLogin;
 
 
 
@@ -35,6 +37,7 @@ public class Activity_Login extends AppCompatActivity implements MvpLogin_Regist
         botonIngresar = (Button) findViewById(R.id.button);
         registrate = (TextView) findViewById(R.id.textViewRegistrate);
         botonIngresar.setOnClickListener(HandlerLogin);
+        progressBarLogin = (ProgressBar)findViewById(R.id.progressBarLogin);
         registrate.setOnClickListener(HandlerRegistrate);
         presenter = new PresenterLogin(this);
 
@@ -69,6 +72,8 @@ public class Activity_Login extends AppCompatActivity implements MvpLogin_Regist
 
     @Override
     public void mostrarResultadoConexion(String cod) {
+        botonIngresar.setEnabled(true);
+        progressBarLogin.setVisibility(View.INVISIBLE);
         Toast.makeText(this,cod,Toast.LENGTH_LONG).show();
     }
 
@@ -76,5 +81,11 @@ public class Activity_Login extends AppCompatActivity implements MvpLogin_Regist
     public void iniciarAplicacion() {
         Intent i = new Intent(this,Activity_inicio_app.class);
         startActivity(i);
+    }
+
+    @Override
+    public void comunicarRequestEnProceso() {
+        botonIngresar.setEnabled(false);
+        progressBarLogin.setVisibility(View.VISIBLE);
     }
 }

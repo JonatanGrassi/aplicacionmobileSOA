@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.aplicacionsoa.presenter.PresenterRegistro;
@@ -25,6 +26,7 @@ public class Activity_Register extends AppCompatActivity implements MvpLogin_Reg
     private EditText grupo;
     private EditText contraseña;
     private Button enviarInformacionDeRegistro;
+    private ProgressBar progressRegistrar;
     private PresenterRegistro presenter;
 
 
@@ -41,6 +43,7 @@ public class Activity_Register extends AppCompatActivity implements MvpLogin_Reg
         grupo = (EditText) findViewById(R.id.editTextGrupo);
         contraseña = (EditText) findViewById(R.id.editTextPassword);
         enviarInformacionDeRegistro = (Button) findViewById(R.id.buttonRegistrar);
+        progressRegistrar = (ProgressBar)findViewById(R.id.progressRegistrar);
         enviarInformacionDeRegistro.setOnClickListener(HandlerRegistro);
         presenter = new PresenterRegistro(this);
 
@@ -79,6 +82,8 @@ public class Activity_Register extends AppCompatActivity implements MvpLogin_Reg
 
     @Override
     public void mostrarResultadoConexion(String msj) {
+        enviarInformacionDeRegistro.setEnabled(true);
+        progressRegistrar.setVisibility(View.INVISIBLE);
         Toast.makeText(this,msj,Toast.LENGTH_LONG).show();
     }
 
@@ -86,5 +91,11 @@ public class Activity_Register extends AppCompatActivity implements MvpLogin_Reg
     public void iniciarAplicacion() {
         Intent i = new Intent(this,Activity_inicio_app.class);
         startActivity(i);
+    }
+
+    @Override
+    public void comunicarRequestEnProceso() {
+        enviarInformacionDeRegistro.setEnabled(false);
+        progressRegistrar.setVisibility(View.VISIBLE);
     }
 }
