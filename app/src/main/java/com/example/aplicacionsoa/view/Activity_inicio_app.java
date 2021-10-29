@@ -18,8 +18,6 @@ import android.widget.Toast;
 import com.example.aplicacionsoa.R;
 import com.example.aplicacionsoa.presenter.MvpInicioApp;
 import com.example.aplicacionsoa.presenter.PresenterActivityInicioApp;
-import com.google.android.material.tooltip.TooltipDrawable;
-import com.tooltip.Tooltip;
 
 public class Activity_inicio_app extends AppCompatActivity implements MvpInicioApp.View {
 
