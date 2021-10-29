@@ -66,7 +66,8 @@ public class activity_opciones_app extends AppCompatActivity implements MvpOpcio
     };
 
     private View.OnClickListener HandlerMostrarMetricas = (V) -> {
-        presenter.cambiarActivity(Activity_Metricas.class);
+        Intent intentMetricas = new Intent(this,Activity_Metricas.class);
+        startActivity(intentMetricas);
     };
 
     @Override
