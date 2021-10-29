@@ -46,6 +46,8 @@ public class PresenterGestionIngresos implements MvpGestionarIngresos.Presenter,
     ReceptorRespuestaServidorRefreshToken broadcastActualizarToken;
     boolean broadCastEventoRegistred;
     boolean broadCastRefreshRegistred;
+    private float proximidad;
+    private boolean seRegistroEvento = false;
 
     public PresenterGestionIngresos(activity_gestionarIngresos view,SensorManager sensorManager)
     {
@@ -124,14 +126,18 @@ public class PresenterGestionIngresos implements MvpGestionarIngresos.Presenter,
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        if(event.values[0] < sensorProximidad.getMaximumRange())
-        {
-            view.inhabilitarBotones();
-            registrarEventoSensorProximidad();
-        }
-        else
-        {
-            view.habilitarBotones();
+        proximidad = event.values[0];
+        if(proximidad < sensorProximidad.getMaximumRange()){
+            if (!seRegistroEvento){
+                view.inhabilitarBotones();
+                registrarEventoSensorProximidad();
+                seRegistroEvento = true;
+            }
+        }else {
+            if(seRegistroEvento){
+                view.habilitarBotones();
+                seRegistroEvento = false;
+            }
         }
     }
 
