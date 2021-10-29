@@ -22,28 +22,28 @@ public class PreferenciasCompartidas {
         int hora = calendario.get(Calendar.HOUR_OF_DAY);
         String key = null;
         if(hora<6)
-            key = "Inicios de sesion fallidos madrugada (00-06)hs";
+            key = "Login fallidos 0hs a 6hs";
         if(hora>=6 && hora<12)
-            key = "Inicios de sesion fallidos mañana (06-12)hs";
+            key = "Login fallidos 6hs a 12hs";
         if(hora>=12 && hora<18)
-            key = "Inicios de sesion fallidos tarde (12-18)hs";
+            key = "Login fallidos 12hs a 18hs";
         if(hora>=18)
-             key = "Inicios de sesion fallidos noche (18-00)hs";
+            key = "Login fallidos 18hs a 24hs";
         int cantidadIniciosFallidos = preferences.getInt(key,0);
         cantidadIniciosFallidos++;
         editor.putInt(key,cantidadIniciosFallidos);
-        editor.commit();
+        editor.apply();
     }
 
     public void guardarRegistro(){
         Calendar calendario = new GregorianCalendar();
         SharedPreferences.Editor editor = preferences.edit();
         int hora = calendario.get(Calendar.HOUR_OF_DAY);
-        String key = hora < 12 ? "Cantidad registros en AM (00-12)hs" : "Cantidad registros en PM (12-00)hs";
+        String key = hora < 12 ? "Registros exitosos 0hs a 12hs" : "Registros exitosos 12hs a 24hs";
         int cantRegistros = preferences.getInt(key,0);
         cantRegistros++;
         editor.putInt(key,cantRegistros);
-        editor.commit();
+        editor.apply();
     }
 
     public Map<String,?> obtenerMetricas(){

@@ -7,8 +7,8 @@ import java.util.Map;
 
 public class PresenterMetricas implements MvpMetricas.Presenter{
 
-    private Activity_Metricas activity_metricas;
-    private PreferenciasCompartidas preferencias;
+    private final Activity_Metricas activity_metricas;
+    private final PreferenciasCompartidas preferencias;
     private final String MSJ_SIN_PREFERENCIAS = "No hay metricas registradas. Consulte el manual";
 
     public PresenterMetricas(Activity_Metricas activity_metricas) {
