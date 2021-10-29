@@ -94,8 +94,7 @@ public class PresenterRegistro implements MvpLogin_Registro.Presenter {
     public void comunicarRespuestaExitosa() {
         preferencias.guardarRegistro();
         viewRegistro.mostrarResultadoConexion("Se ha registrado correctamente");
-        Intent newIntent = new Intent(viewRegistro, Activity_inicio_app.class);
-        viewRegistro.startActivity(newIntent);
+        viewRegistro.iniciarAplicacion();
         liberarRecursos();
         //newIntent.putExtra("token_refresh",token_refresh);
         //newIntent.putExtra("token",token);

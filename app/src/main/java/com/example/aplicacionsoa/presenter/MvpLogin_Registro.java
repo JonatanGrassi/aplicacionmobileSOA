@@ -6,6 +6,7 @@ public interface MvpLogin_Registro {
 
     interface View {
         public void mostrarResultadoConexion(String cod);
+        public void iniciarAplicacion();
     }
     interface Presenter
     {

@@ -1,5 +1,7 @@
 package com.example.aplicacionsoa.presenter;
 
+import android.content.Intent;
+
 import com.example.aplicacionsoa.view.Activity_Register;
 import com.example.aplicacionsoa.view.Activity_inicio_app;
 
@@ -15,6 +17,6 @@ public interface MvpInicioApp {
     interface Presenter
     {
         public Boolean validarEntradas(boolean checkRestaurant, boolean checkBar, boolean checkDiscoteca, String toString,String metrosCuadrados);
-        public void cambiarActivity();
+        public void configurarIntent(Intent intent);
     }
 }

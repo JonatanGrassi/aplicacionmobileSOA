@@ -1,5 +1,7 @@
 package com.example.aplicacionsoa.presenter;
 
+import android.content.Intent;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public interface MvpOpcionesApp {
@@ -9,7 +11,7 @@ public interface MvpOpcionesApp {
     }
     interface Presenter
     {
-        public void cambiarActivity(Class<?> activity);
+        public void configurarIntent(Intent intent);
         public void obtenerNombreLocal();
     }
 }

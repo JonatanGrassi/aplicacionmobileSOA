@@ -20,12 +20,10 @@ public class PresenterActivityOpcionesApp implements MvpOpcionesApp.Presenter{
     }
 
     @Override
-    public void cambiarActivity(Class<?> activity) {
-        Intent newIntent = new Intent(view,activity);
-        newIntent.putExtra("metrosCuadrados",metrosCuadrados);
-        newIntent.putExtra("eleccion",tipoLocal);
-        newIntent.putExtra("nombreLocal",nombreLocal);
-        view.startActivity(newIntent);
+    public void configurarIntent(Intent intent) {
+        intent.putExtra("metrosCuadrados",metrosCuadrados);
+        intent.putExtra("eleccion",tipoLocal);
+        intent.putExtra("nombreLocal",nombreLocal);
     }
 
     @Override

@@ -71,4 +71,10 @@ public class Activity_Login extends AppCompatActivity implements MvpLogin_Regist
     public void mostrarResultadoConexion(String cod) {
         Toast.makeText(this,cod,Toast.LENGTH_LONG).show();
     }
+
+    @Override
+    public void iniciarAplicacion() {
+        Intent i = new Intent(this,Activity_inicio_app.class);
+        startActivity(i);
+    }
 }

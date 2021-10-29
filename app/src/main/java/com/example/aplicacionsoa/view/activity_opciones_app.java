@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,17 +41,24 @@ public class activity_opciones_app extends AppCompatActivity implements MvpOpcio
 
     private View.OnClickListener HandlerConsultarAforo = (V) ->
     {
-        presenter.cambiarActivity(activity_consultar_aforo.class);
+        Intent intentAforo = new Intent(this,activity_consultar_aforo.class);
+        presenter.configurarIntent(intentAforo);
+        startActivity(intentAforo);
+
     };
 
     private View.OnClickListener HandlerConsultarTips = (V) ->
     {
-        presenter.cambiarActivity(activity_consultar_recomendaciones.class);
+        Intent intentRecomendaciones = new Intent(this,activity_consultar_recomendaciones.class);
+        presenter.configurarIntent(intentRecomendaciones);
+        startActivity(intentRecomendaciones);
     };
 
     private View.OnClickListener HandlerGestionar = (V) ->
     {
-        presenter.cambiarActivity(activity_gestionarIngresos.class);
+        Intent intentGestion = new Intent(this,activity_gestionarIngresos.class);
+        presenter.configurarIntent(intentGestion);
+        startActivity(intentGestion);
     };
 
     @Override

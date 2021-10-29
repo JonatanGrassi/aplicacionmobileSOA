@@ -58,13 +58,11 @@ public class PresenterActivityInicioApp implements MvpInicioApp.Presenter{
     }
 
     @Override
-    public void cambiarActivity() {
-        Intent newIntent = new Intent(view, activity_opciones_app.class);
-        newIntent.putExtra("nombreLocal",this.nombreLocal);
+    public void configurarIntent(Intent intent) {
+        intent.putExtra("nombreLocal",this.nombreLocal);
         Bundle bundle= new Bundle();
         bundle.putSerializable("eleccion", this.localElegido);
-        newIntent.putExtra("eleccion",bundle);
-        newIntent.putExtra("metrosCuadrados",this.metrosCuadrados);
-        view.startActivity(newIntent);
+        intent.putExtra("eleccion",bundle);
+        intent.putExtra("metrosCuadrados",this.metrosCuadrados);
     }
 }

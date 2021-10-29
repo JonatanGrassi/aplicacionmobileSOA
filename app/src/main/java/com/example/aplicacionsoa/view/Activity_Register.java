@@ -2,6 +2,7 @@ package com.example.aplicacionsoa.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -79,5 +80,11 @@ public class Activity_Register extends AppCompatActivity implements MvpLogin_Reg
     @Override
     public void mostrarResultadoConexion(String msj) {
         Toast.makeText(this,msj,Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void iniciarAplicacion() {
+        Intent i = new Intent(this,Activity_inicio_app.class);
+        startActivity(i);
     }
 }

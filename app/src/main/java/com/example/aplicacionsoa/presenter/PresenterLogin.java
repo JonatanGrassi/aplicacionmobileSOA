@@ -73,9 +73,7 @@ public class PresenterLogin implements MvpLogin_Registro.Presenter{
     @Override
     public void comunicarRespuestaExitosa() {
         viewLogin.mostrarResultadoConexion("Se ha logueado exitosamente");
-        Intent newIntent = new Intent(viewLogin, Activity_inicio_app.class);
-        viewLogin.startActivity(newIntent);
-
+        viewLogin.iniciarAplicacion();
         liberarRecursos();
         //newIntent.putExtra("token_refresh",token_refresh);
         //newIntent.putExtra("token",token);
