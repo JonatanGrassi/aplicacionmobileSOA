@@ -1,6 +1,5 @@
 package com.example.aplicacionsoa.presenter;
 
-import android.app.KeyguardManager;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.hardware.Sensor;
@@ -9,18 +8,14 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
 import com.example.aplicacionsoa.ClasesUtilitarias.Local;
 import com.example.aplicacionsoa.ClasesUtilitarias.Utilitarias;
-import com.example.aplicacionsoa.view.Http_Conection_Service_POST_EVENTOS;
-import com.example.aplicacionsoa.view.Http_conection_Service_PUT;
-import com.example.aplicacionsoa.view.activity_consultar_aforo;
+import com.example.aplicacionsoa.model.Http_Conection_Service_POST_EVENTOS;
+import com.example.aplicacionsoa.model.Http_conection_Service_PUT;
 import com.example.aplicacionsoa.view.activity_gestionarIngresos;
 
 import org.json.JSONException;

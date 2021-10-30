@@ -1,4 +1,4 @@
-package com.example.aplicacionsoa.view;
+package com.example.aplicacionsoa.model;
 
 import android.app.IntentService;
 import android.content.Intent;
@@ -10,32 +10,30 @@ import com.example.aplicacionsoa.ClasesUtilitarias.Utilitarias;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
 
+public class Http_conection_Service_PUT extends IntentService {
 
-public class Http_Conection_Service_POST extends IntentService {
+    public Http_conection_Service_PUT() {
+        super("Http_conection_Service_PUT");
+    }
 
     private HttpURLConnection connection;
     private URL url;
     private int respuestaServidor;
     private String Pathbroadcast;
 
-    public Http_Conection_Service_POST() {
-        super("Http_Conection_Service_POST");
-    }
 
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
         String uri = intent.getExtras().getString("URI");
+        String token_refresh = intent.getExtras().getString("token_refresh");
         Pathbroadcast = intent.getExtras().getString("pathBroadcast");
         try {
-            JSONObject obj = new JSONObject(intent.getExtras().getString("JSON"));
-            String result = realizarPOST(obj,uri);
+            String result = realizarPOST(uri,token_refresh);
             ejecutarPOST(result);
 
         } catch (JSONException e) {
@@ -43,21 +41,19 @@ public class Http_Conection_Service_POST extends IntentService {
         }
     }
 
-    public String realizarPOST(JSONObject obj,String uri)
+    public String realizarPOST(String uri,String token_refresh)
     {
         connection = null;
         String result = null;
         try {
             url = new URL(uri);
             connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("POST");
+            connection.setRequestMethod("PUT");
             connection.setRequestProperty("Content-Type","application/json ; charset=UTF-8");
+            connection.setRequestProperty("Authorization","Bearer " + token_refresh);
             connection.setDoOutput(true);
             connection.setDoInput(true);
             connection.setConnectTimeout(10000);
-            DataOutputStream dots = new DataOutputStream(connection.getOutputStream());
-            dots.write(obj.toString().getBytes(StandardCharsets.UTF_8));
-            dots.flush();
             connection.connect();
             respuestaServidor = connection.getResponseCode();
             if(respuestaServidor == HttpURLConnection.HTTP_OK || respuestaServidor == HttpURLConnection.HTTP_CREATED)
@@ -65,13 +61,12 @@ public class Http_Conection_Service_POST extends IntentService {
                 InputStreamReader iSr = new InputStreamReader(connection.getInputStream());
                 result= Utilitarias.convertInputStreamToString(iSr).toString();
             }
-            else if(respuestaServidor == HttpURLConnection.HTTP_BAD_REQUEST)
+            else if(respuestaServidor == HttpURLConnection.HTTP_BAD_REQUEST )
             {
                 InputStreamReader iSr = new InputStreamReader(connection.getErrorStream());
                 result=Utilitarias.convertInputStreamToString(iSr).toString();
             }
 
-            dots.close();
             connection.disconnect();
             return result;
 
@@ -90,8 +85,8 @@ public class Http_Conection_Service_POST extends IntentService {
         i.putExtra("success",success);
         if(respuestaServidor == HttpURLConnection.HTTP_OK || respuestaServidor == HttpURLConnection.HTTP_CREATED)
         {
-            i.putExtra("token_refresh",obj.getString("token_refresh"));
             i.putExtra("token",obj.getString("token"));
+            i.putExtra("token_refresh",obj.getString("token_refresh"));
         }
         else if(respuestaServidor == HttpURLConnection.HTTP_BAD_REQUEST)
         {
@@ -99,6 +94,4 @@ public class Http_Conection_Service_POST extends IntentService {
         }
         sendBroadcast(i);
     }
-
-
 }

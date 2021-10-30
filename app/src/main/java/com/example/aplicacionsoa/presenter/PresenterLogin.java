@@ -2,15 +2,13 @@ package com.example.aplicacionsoa.presenter;
 
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
 import com.example.aplicacionsoa.ClasesUtilitarias.Utilitarias;
 import com.example.aplicacionsoa.model.PreferenciasCompartidas;
-import com.example.aplicacionsoa.view.Http_Conection_Service_POST;
+import com.example.aplicacionsoa.model.Http_Conection_Service_POST;
 import com.example.aplicacionsoa.view.Activity_Login;
-import com.example.aplicacionsoa.view.Activity_inicio_app;
 
 import org.json.JSONException;
 import org.json.JSONObject;
