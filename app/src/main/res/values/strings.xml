@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">aplicacionSoa</string>
+    <string name="app_name">HelperCapacity</string>
     <string name="Ambiente">Ambiente</string>
     <string name="nombre">nombre</string>
     <string name="Apellido">apellido</string>

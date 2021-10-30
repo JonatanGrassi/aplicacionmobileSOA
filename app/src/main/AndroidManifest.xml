@@ -12,12 +12,10 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="HelperCapacity"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AplicacionSoa"
+        android:theme="@style/Theme.HelperCapacity"
         android:usesCleartextTraffic="true"
         >
-
         <activity
             android:name=".view.Activity_Metricas"
             android:exported="true"
